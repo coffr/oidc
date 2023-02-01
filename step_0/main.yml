@@ -1,0 +1,11 @@
+- hosts: 127.0.0.1
+  connection: local
+
+  tasks:
+    - name: S3 Bucket for Terraform backend
+      amazon.aws.s3_bucket:
+        name: pe-tf-state
+        state: present
+        tags:
+          Project: Platform Engineering
+          User: "{{ lookup('env', 'USER') }}"
