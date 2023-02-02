@@ -6,6 +6,19 @@
       amazon.aws.s3_bucket:
         name: pe-tf-state
         state: present
+        versioning: true
+        encryption: "AES256"
+        tags:
+          Project: Platform Engineering
+          User: "{{ lookup('env', 'USER') }}"
+
+    - name: DynamoDB table for managing the locking
+      community.aws.dynamodb_table:
+        name: pe-tf-state
+        read_capacity: 5
+        write_capacity: 5
+        hash_key_name: "LockID"
+        hash_key_type: STRING
         tags:
           Project: Platform Engineering
           User: "{{ lookup('env', 'USER') }}"
