@@ -32,6 +32,8 @@ data "aws_iam_policy_document" "iam_policy_document" {
     actions = [
       "iam:GetRole",
       "dynamodb:PutItem",
+      "iam:GetPolicy",
+      "dynamodb:DeleteItem",
       "iam:TagRole",
       "iam:CreateRole",
       "s3:ListBucket",
@@ -41,12 +43,17 @@ data "aws_iam_policy_document" "iam_policy_document" {
       "s3:GetObject",
       "iam:ListAttachedRolePolicies",
       "dynamodb:GetItem",
-      "dynamodb:DeleteItem",
       "sts:GetCallerIdentity",
+      "iam:GetUser",
       "iam:ListRolePolicies",
       "iam:GetOpenIDConnectProvider",
       "iam:TagOpenIDConnectProvider",
-      "iam:GetRolePolicy"
+      "iam:GetRolePolicy",
+      "iam:GetPolicyVersion",
+      "iam:ListAccessKeys",
+      "iam:ListAttachedUserPolicies",
+      "iam:TagUser",
+      "iam:ListPolicyVersions"
     ]
 
     resources = [

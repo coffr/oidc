@@ -28,7 +28,7 @@ endif
 
 HELPER_IMAGE := ghcr.io/platform-engineering-org/helper:latest
 in_container = ${ENGINE} run --rm --name bootstrap -v $(PWD):/workspace:rw -v ~/.aws:/root/.aws:ro -w /workspace --security-opt label=disable --env USER=${USER} --env OS_ENV=container ${HELPER_IMAGE} make $1
-TERRAGRUNT_CMD = cd live/${ENV}/ci-bot && terragrunt
+TERRAGRUNT_CMD = cd live/${ENV}/ci-bot && TF_LOG=DEBUG terragrunt
 
 
 init-in-container:
