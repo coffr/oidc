@@ -1,11 +1,4 @@
 terraform {
-  backend "s3" {
-    bucket         = "pe-tf-state"
-    key            = "ci-bot/terraform.tfstate"
-    region         = "eu-west-2"
-    encrypt        = true
-    dynamodb_table = "pe-tf-state"
-  }
   required_providers {
     aws = {
       source  = "hashicorp/aws"
@@ -37,20 +30,23 @@ data "aws_iam_policy_document" "iam_policy_document" {
     sid = "1"
 
     actions = [
-      "ec2:DescribeImages",
       "iam:GetRole",
-      "iam:ListAttachedRolePolicies",
+      "dynamodb:PutItem",
       "iam:TagRole",
       "iam:CreateRole",
+      "s3:ListBucket",
       "iam:PutRolePolicy",
+      "iam:CreateOpenIDConnectProvider",
+      "ec2:DescribeImages",
+      "s3:GetObject",
+      "iam:ListAttachedRolePolicies",
+      "dynamodb:GetItem",
+      "dynamodb:DeleteItem",
+      "sts:GetCallerIdentity",
       "iam:ListRolePolicies",
       "iam:GetOpenIDConnectProvider",
       "iam:TagOpenIDConnectProvider",
-      "iam:GetRolePolicy",
-      "iam:CreateOpenIDConnectProvider",
-      "sts:GetCallerIdentity",
-      "s3:GetObject",
-      "dynamodb:PutItem"
+      "iam:GetRolePolicy"
     ]
 
     resources = [
