@@ -14,4 +14,13 @@
 make step_0
 ```
 
+## CI bot
+
+bot user for executing GitHub Actions workflows
+
+Resources:
+
+* IAM user with proper permissions and access keys
+* Access keys populated as GitHub organization secrets
+
 [1]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html
