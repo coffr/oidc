@@ -12,7 +12,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3.3.0
-      - run: ansible-galaxy install -r ./step_0/requirements.yml
       - uses: pre-commit/action@v3.0.0
 
       - name: Setup
