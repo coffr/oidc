@@ -19,11 +19,6 @@ variable "owner" {
   default = "platform-engineering-org-test"
 }
 
-variable "token" {
-  type    = string
-  default = ""
-}
-
 variable "aws_region" {
   type    = string
   default = "eu-west-2"

@@ -23,4 +23,8 @@ Resources:
 * IAM user with proper permissions and access keys
 * Access keys populated as GitHub organization secrets
 
+```shell
+make ENV=prod up
+```
+
 [1]: https://docs.aws.amazon.com/cli/latest/userguide/cli-configure-files.html

@@ -20,8 +20,18 @@ provider "aws" {
   }
 }
 
+data "aws_secretsmanager_secret_version" "github_creds" {
+  secret_id = "github"
+}
+
+locals {
+  github = jsondecode(
+    data.aws_secretsmanager_secret_version.github_creds.secret_string
+  )
+}
+
 provider "github" {
-  token = var.token
+  token = local.github.token
   owner = var.owner
 }
 
