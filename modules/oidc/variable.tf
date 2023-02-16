@@ -1,11 +1,10 @@
+variable "aws_region" {
+  type    = string
+  default = "eu-west-2"
+}
 variable "user" {
   type    = string
   default = ""
-}
-
-variable "aws_profile" {
-  type    = string
-  default = "default"
 }
 
 variable "tags" {
@@ -16,10 +15,5 @@ variable "tags" {
 
 variable "owner" {
   type    = string
-  default = "platform-engineering-org-test"
-}
-
-variable "aws_region" {
-  type    = string
-  default = "eu-west-2"
+  default = "platform-engineering-org"
 }

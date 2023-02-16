@@ -1,5 +1,5 @@
 terraform {
-  source = "../../../modules//ci-bot"
+  source = "../../../modules//oidc"
 }
 
 include "root" {
