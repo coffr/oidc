@@ -78,7 +78,8 @@ POLICY
 }
 
 resource "aws_cloudwatch_log_group" "cloudwatch_log_group" {
-  name = "pe-tf-audit"
+  name              = "pe-tf-audit"
+  retention_in_days = 30
 }
 
 resource "aws_cloudwatch_log_metric_filter" "cloudwatch_log_metric_filter" {
