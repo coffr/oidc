@@ -1,6 +1,7 @@
 .PHONY: init reconfigure upgrade plan up down init-in-container \
 		reconfigure-in-container upgrade-in-container plan-in-container \
-		up-in-container down-in-container
+		up-in-container down-in-container \
+		audit audit-in-container
 
 ENV := dev
 
@@ -47,6 +48,9 @@ up-in-container:
 down-in-container:
 	${TERRAGRUNT_CMD} destroy -auto-approve -var "user=${USER}" -var "aws_region=${AWS_REGION}"
 
+audit-in-container:
+	cd live/${ENV}/audit && terragrunt run-all --terragrunt-non-interactive apply -auto-approve -var "user=${USER}" -var "aws_region=${AWS_REGION}"
+
 init:
 	$(call in_container,init-in-container)
 
@@ -64,3 +68,6 @@ up:
 
 down:
 	$(call in_container,down-in-container)
+
+audit:
+	$(call in_container,audit-in-container)
