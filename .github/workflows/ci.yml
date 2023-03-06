@@ -10,6 +10,18 @@ jobs:
     name: "CI"
     runs-on: ubuntu-latest
 
+    container:
+      image: ghcr.io/platform-engineering-org/helper:latest
+
     steps:
       - uses: actions/checkout@v3.3.0
+      - name: Setup ASDF environment
+        run: |
+          ASDF_DIR=/root/.asdf
+          echo "ASDF_DIR=$ASDF_DIR" >> $GITHUB_ENV
+          echo "ASDF_DATA_DIR=$ASDF_DIR" >> $GITHUB_ENV
+          echo "$ASDF_DIR/bin" >> $GITHUB_PATH
+          echo "$ASDF_DIR/shims" >> $GITHUB_PATH
+          $ASDF_DIR/bin/asdf reshim
+          cp /root/.tool-versions ~/
       - uses: pre-commit/action@v3.0.0

@@ -7,13 +7,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.aws_region
-  default_tags {
-    tags = merge(var.tags, { User = var.user })
-  }
-}
-
 data "aws_caller_identity" "current" {}
 
 data "aws_iam_role" "AWSServiceRoleForCloudTrail" {
