@@ -15,18 +15,9 @@ ifndef OS_ENV
     endif
 endif
 
-ifeq ($(ENV), dev)
-	ifndef AWS_REGION
-	    AWS_REGION := $(shell aws configure get region)
-	endif
-else ifeq ($(ENV), ci)
-	AWS_REGION := ${AWS_REGION}
-else ifeq ($(ENV), prod)
-	AWS_REGION := ${AWS_REGION}
-endif
 
 HELPER_IMAGE := ghcr.io/platform-engineering-org/helper:latest
-in_container = ${ENGINE} run --rm --name bootstrap -v $(PWD):/workspace:rw -v ~/.aws:/root/.aws:ro -w /workspace --security-opt label=disable --env USER=${USER} --env OS_ENV=container ${HELPER_IMAGE} echo ${ENV} && make $1
+in_container = ${ENGINE} run --rm --name bootstrap -v $(PWD):/workspace:rw -v ~/.aws:/root/.aws:ro -w /workspace --security-opt label=disable --env OS_ENV=container ${HELPER_IMAGE} echo ${ENV} && make $1
 TERRAGRUNT_CMD = cd live/${ENV} && terragrunt run-all --terragrunt-non-interactive
 
 
@@ -40,16 +31,16 @@ upgrade-in-container:
 	${TERRAGRUNT_CMD} init -upgrade
 
 plan-in-container:
-	${TERRAGRUNT_CMD} plan -var "user=${USER}" -var "aws_region=${AWS_REGION}"
+	${TERRAGRUNT_CMD} plan
 
 up-in-container:
-	${TERRAGRUNT_CMD} apply -auto-approve -var "user=${USER}" -var "aws_region=${AWS_REGION}"
+	${TERRAGRUNT_CMD} apply -auto-approve
 
 down-in-container:
-	${TERRAGRUNT_CMD} destroy -auto-approve -var "user=${USER}" -var "aws_region=${AWS_REGION}"
+	${TERRAGRUNT_CMD} destroy -auto-approve
 
 audit-in-container:
-	cd live/${ENV}/audit && terragrunt run-all --terragrunt-non-interactive apply -auto-approve -var "user=${USER}" -var "aws_region=${AWS_REGION}"
+	cd live/${ENV}/audit && terragrunt run-all --terragrunt-non-interactive apply -auto-approve
 
 init:
 	$(call in_container,init-in-container)

@@ -1,6 +1,6 @@
 ---
-ci:
-  skip: [terraform_fmt, terraform_validate]
+default_language_version:
+  ruby: 3.1.2
 
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
@@ -35,5 +35,8 @@ repos:
   - repo: https://github.com/antonbabenko/pre-commit-terraform
     rev: v1.77.1
     hooks:
+      - id: terraform_providers_lock
+        args:
+          - --tf-init-args=-upgrade
       - id: terraform_fmt
       - id: terraform_validate

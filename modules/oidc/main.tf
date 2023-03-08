@@ -19,13 +19,6 @@ terraform {
   }
 }
 
-provider "aws" {
-  region = var.aws_region
-  default_tags {
-    tags = merge(var.tags, { User = var.user })
-  }
-}
-
 data "aws_secretsmanager_secret_version" "github_creds" {
   secret_id = "github"
 }
