@@ -1,7 +1,0 @@
-{
-    "name": "dev",
-    "build": { "dockerfile": "Dockerfile", "args": { "USERNAME": "${localEnv:USER}" } },
-    "mounts": [
-        "source=${localEnv:HOME}/.aws,target=/home/${localEnv:USER}/.aws,type=bind,consistency=cached"
-    ]
-}
