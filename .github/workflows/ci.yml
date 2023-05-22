@@ -15,6 +15,7 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3.5.2
+      - uses: actions/setup-python@v4.6.0
       - name: Setup ASDF environment
         run: |
           ASDF_DIR=/root/.asdf
@@ -24,4 +25,7 @@ jobs:
           echo "$ASDF_DIR/shims" >> $GITHUB_PATH
           $ASDF_DIR/bin/asdf reshim
           cp /root/.tool-versions ~/
-      - uses: pre-commit/action@v3.0.0
+      - run: |
+          pip install pre-commit==3.3.1
+          dnf install -y git
+          pre-commit run --show-diff-on-failure --color=always --all-files
