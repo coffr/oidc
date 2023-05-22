@@ -24,4 +24,9 @@ jobs:
           echo "$ASDF_DIR/shims" >> $GITHUB_PATH
           $ASDF_DIR/bin/asdf reshim
           cp /root/.tool-versions ~/
+      - run: git config --global --add safe.directory '*'
       - uses: pre-commit/action@v3.0.0
+      - name: Show pre-commit log
+        if: ${{ failure() }}
+        run: |
+          cat /github/home/.cache/pre-commit/pre-commit.log

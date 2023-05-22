@@ -1,10 +1,7 @@
 {
-    "name": "dev",
+    "name": "bootstrap-dev-env",
     "build": {
-        "dockerfile": "Dockerfile",
-        "args": {
-            "USERNAME": "${localEnv:USER}"
-        }
+        "dockerfile": "Dockerfile"
     },
     "mounts": [
         "source=${localEnv:HOME}/.aws,target=/root/.aws,type=bind,consistency=cached"
