@@ -1,3 +1,3 @@
-ansible==8.0.0
-boto3==1.26.155
+ansible==8.1.0
+boto3==1.26.160
 pre-commit==3.3.3
