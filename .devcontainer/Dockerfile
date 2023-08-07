@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi9:9.2-696@sha256:089bd3b82a78ac45c0eed231bb58bfb43bfcd0560d9bba240fc6355502c92976
+FROM registry.access.redhat.com/ubi9:9.2-722@sha256:c35238b35cbebe4e6c5d0f63a54e54dba41d0b425f2d101ad9f04a5e5ec100b8
 
 ARG HOME=/root
 
