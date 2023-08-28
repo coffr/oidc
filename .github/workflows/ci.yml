@@ -11,10 +11,10 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/platform-engineering-org/helper:latest@sha256:6f3ef865b026d7f51cb58186a40abe20c0026fa52e14105cd635ea87b48b58ed
+      image: ghcr.io/platform-engineering-org/helper:latest@sha256:018b437153d9de84090441b0e5ed04c6f7d208881b27f89744bf593ef69e8967
 
     steps:
-      - uses: actions/checkout@v3.5.3
+      - uses: actions/checkout@v3.6.0
       - name: Setup ASDF environment
         run: |
           ASDF_DIR=/root/.asdf
