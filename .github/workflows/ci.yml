@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
 
     container:
-      image: ghcr.io/platform-engineering-org/helper:latest@sha256:8f8be0c3f44f5b13322932b4e53f26c30ea509cb4bc12c8e43b348c87dc39cdd
+      image: ghcr.io/platform-engineering-org/helper:latest@sha256:4827e154985e549e0e5185510549fb31f7859742cb0d6435c25890e8ea00bf4e
 
     steps:
       - uses: actions/checkout@v3.6.0
